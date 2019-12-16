@@ -19,7 +19,7 @@ jobs:
 #                command: composer config http-basic.satis.infra.nubity.com $SATIS_USERNAME $SATIS_PASSWORD
 
             - run:
-                command: build satis.json build
+                command: satis build satis.json build
 
             # Download and cache dependencies
 #            - restore_cache:
@@ -27,8 +27,6 @@ jobs:
 #                - v1-dependencies-{{ checksum "composer.json" }}
 #                # fallback to using the latest cache if no exact match is found
 #                - v1-dependencies-
-
-            - run: composer install --prefer-dist --optimize-autoloader --no-interaction --no-scripts
 
 #            - save_cache:
 #                paths:
