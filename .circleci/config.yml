@@ -20,6 +20,7 @@ jobs:
                 --user $(id -u):$(id -g) \
                 --volume $(pwd):/build \
                 --volume "${COMPOSER_HOME:-$HOME/.composer}:/composer" \
+                --entrypoint /bin/sh
                 composer/satis composer config http-basic.satis.infra.nubity.com $SATIS_USERNAME $SATIS_PASSWORD
 
             - run: |
