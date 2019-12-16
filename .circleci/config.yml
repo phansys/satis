@@ -15,13 +15,21 @@ jobs:
                 command: |
                     mkdir -p /tmp/.composer
                     mkdir -p build
-            - run: |
-                docker run --rm --init -it \
-                --user $(id -u):$(id -g) \
-                --volume $(pwd):/build \
-                --volume "${COMPOSER_HOME:-$HOME/.composer}:/composer" \
-                --entrypoint /bin/sh \
-                composer/satis composer config http-basic.satis.infra.nubity.com $SATIS_USERNAME $SATIS_PASSWORD
+            - run:
+                name: "Add extra environment variables"
+                command: |
+                    echo -e '{
+                        "github-oauth": {
+                            "github.com": "'$COMPOSER_GITHUB_TOKEN'"
+                        }
+                    }' > /tmp/.composer/auth.json
+#            - run: |
+#                docker run --rm --init -it \
+#                --user $(id -u):$(id -g) \
+#                --volume $(pwd):/build \
+#                --volume "${COMPOSER_HOME:-$HOME/.composer}:/composer" \
+#                --entrypoint /bin/sh \
+#                composer/satis composer config http-basic.satis.infra.nubity.com $SATIS_USERNAME $SATIS_PASSWORD
 
             - run: |
                 docker run --rm --init -it \
