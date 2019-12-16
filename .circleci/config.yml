@@ -1,8 +1,7 @@
 version: 2.1
 jobs:
     build:
-        docker:
-            - image: composer/satis
+        machine: true
         working_directory: ~/satis
         environment:
             COMPOSER_HOME: .composer
@@ -11,8 +10,6 @@ jobs:
 #            CIRCLE_ARTIFACTS: /tmp/.circle-artifacts
         steps:
             - checkout
-            - setup_remote_docker:
-                docker_layer_caching: true
             - run:
                 name: "Create directories"
                 command: |
