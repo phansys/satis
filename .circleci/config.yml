@@ -4,7 +4,7 @@ jobs:
         machine: true
         working_directory: ~/satis
         environment:
-            COMPOSER_HOME: .composer
+            COMPOSER_HOME: /tmp/.composer
 #            CIRCLE_TEST_REPORTS: .circle-test-reports
 #            PHPUNIT_COVERAGE_REPORT_FILE: .circle-test-reports/phpunit/coverage.xml
 #            CIRCLE_ARTIFACTS: /tmp/.circle-artifacts
@@ -13,7 +13,7 @@ jobs:
             - run:
                 name: "Create directories"
                 command: |
-                    mkdir -p .composer
+                    mkdir -p /tmp/.composer
                     mkdir -p build
 #            - run:
 #                command: composer config http-basic.satis.infra.nubity.com $SATIS_USERNAME $SATIS_PASSWORD
