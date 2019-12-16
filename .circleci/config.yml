@@ -15,8 +15,12 @@ jobs:
                 command: |
                     mkdir -p /tmp/.composer
                     mkdir -p build
-#            - run:
-#                command: composer config http-basic.satis.infra.nubity.com $SATIS_USERNAME $SATIS_PASSWORD
+            - run: |
+                docker run --rm --init -it \
+                --user $(id -u):$(id -g) \
+                --volume $(pwd):/build \
+                --volume "${COMPOSER_HOME:-$HOME/.composer}:/composer" \
+                composer/satis composer config http-basic.satis.infra.nubity.com $SATIS_USERNAME $SATIS_PASSWORD
 
             - run: |
                 docker run --rm --init -it \
