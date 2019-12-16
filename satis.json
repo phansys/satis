@@ -1,0 +1,125 @@
+{
+    "name": "Nubity",
+    "homepage": "https://satis.infra.nubity.com",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:nubity/fw-php.git",
+            "options": {
+                "ssh2": {
+                    "username": "git",
+                    "pubkey_file": "/root/.ssh/fw-id_rsa.pub",
+                    "privkey_file": "/root/.ssh/fw-id_rsa"
+                }
+            }
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:nubity/colppy-sdk-php.git",
+            "options": {
+                "ssh2": {
+                    "username": "git",
+                    "pubkey_file": "/root/.ssh/colppy-php-sdk_rsa.pub",
+                    "privkey_file": "/root/.ssh/colppy-php-sdk_rsa"
+                }
+            }
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:nubity/billing-abstraction.git",
+            "options": {
+                "ssh2": {
+                    "username": "git",
+                    "pubkey_file": "/root/.ssh/billing-providers-id_rsa.pub",
+                    "privkey_file": "/root/.ssh/billing-providers-id_rsa"
+                }
+            }
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:nubity/cloud-provider.git",
+            "options": {
+                "ssh2": {
+                    "username": "git",
+                    "pubkey_file": "/root/.ssh/billing-providers-id_rsa.pub",
+                    "privkey_file": "/root/.ssh/billing-providers-id_rsa"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "googlecode/recaptcha",
+                "version": "0.1.0",
+                "dist": {
+                    "url": "https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/recaptcha/recaptcha-php-1.11.zip",
+                    "type": "zip"
+                },
+                "autoload": {
+                    "files": ["recaptchalib.php"]
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "googlecode/simple-linkedinphp",
+                "version": "3.3.0",
+                "dist": {
+                    "url": "https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/simple-linkedinphp/3.3.0.zip",
+                    "type": "zip"
+                },
+                "require": {
+                    "ext-oauth": "*"
+                },
+                "autoload": {
+                    "classmap": ["./"]
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "monk-e-boy/open-flash-chart",
+                "version": "2.0.0",
+                "source": {
+                    "url": "http://svn.code.sf.net/p/openflashchart/code/version-2/php-ofc-library",
+                    "type": "svn",
+                    "reference": "trunk"
+                },
+                "autoload": {
+                    "classmap": [""]
+                }
+            }
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:phansys/cloudstack-php-client.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:phansys/twitter-async.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:Furgas/php-api-library.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:phansys/PhpZabbixApi.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:phansys/openstack.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:phansys/DoctrineExtensions.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:phansys/TicketNotificationBundle.git"
+        }
+    ],
+    "require-all": true
+}

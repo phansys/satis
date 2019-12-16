@@ -1,0 +1,51 @@
+version: 2
+jobs:
+    build:
+        docker:
+            - image: composer/satis
+        working_directory: ~/satis
+#        environment:
+#            COMPOSER_CACHE_DIR: .composer
+#            CIRCLE_TEST_REPORTS: .circle-test-reports
+#            PHPUNIT_COVERAGE_REPORT_FILE: .circle-test-reports/phpunit/coverage.xml
+#            CIRCLE_ARTIFACTS: /tmp/.circle-artifacts
+        steps:
+            - checkout
+            - run:
+                name: "Create directories"
+                command: |
+                    mkdir -p build
+#            - run:
+#                command: composer config http-basic.satis.infra.nubity.com $SATIS_USERNAME $SATIS_PASSWORD
+
+            - run:
+                command: build satis.json build
+
+            # Download and cache dependencies
+#            - restore_cache:
+#                keys:
+#                - v1-dependencies-{{ checksum "composer.json" }}
+#                # fallback to using the latest cache if no exact match is found
+#                - v1-dependencies-
+
+            - run: composer install --prefer-dist --optimize-autoloader --no-interaction --no-scripts
+
+#            - save_cache:
+#                paths:
+#                  - $COMPOSER_CACHE_DIR
+#                key: v1-dependencies-{{ checksum "composer.json" }}
+
+            - run:
+                name: "Searching for changes at source code"
+                command: |
+                    if [[ -n $(for file in $(git grep --cached -Il ''); do test $(tail -c 1 $file) && echo $file; done) ]]; then echo -e "Some files have missing LF at EOF:\n$(for file in $(git grep --cached -Il ''); do test $(tail -c 1 $file) && echo $file; done)" && exit 1; fi;
+                    if [[ -n $(git grep --cached -Il " $") ]]; then echo -e "Some files have trailing whitespaces at line endings:\n$(git grep --cached -Il " $")" && exit 1; fi;
+
+            - store_artifacts:
+                path: build
+
+workflows:
+    version: 2
+    build:
+        jobs:
+            - build
