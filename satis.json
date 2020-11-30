@@ -1,6 +1,6 @@
 {
     "name": "nubity/satis",
-    "homepage": "https://satis.infra.nubity.com",
+    "homepage": "https://s3.amazonaws.com/satis.nubity.com/",
     "repositories": [
         {
             "type": "vcs",
